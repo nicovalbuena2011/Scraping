@@ -2,7 +2,7 @@ name: Ejecutar Script
 
 on:
   schedule:
-    - cron: '41 14 * * *'   # Programa la ejecución diaria
+    - cron: '50 19 * * *'   # Programa la ejecución diaria
 
 jobs:
   build:
