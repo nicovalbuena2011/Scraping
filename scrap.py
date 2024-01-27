@@ -81,7 +81,7 @@ if tabla_procesos:
 
 
 
-print('holaaaaaaa')
+print(response)
 # Configuración de la información del correo
 sender_email = os.environ.get('SMTP_USERNAME')
 receiver_email = "nicovalbuena2011@gmail.com"
