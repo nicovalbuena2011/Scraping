@@ -1,0 +1,32 @@
+name: Ejecutar Script
+
+on:
+  schedule:
+    - cron: '35 14 * * *'   # Programa la ejecución diaria
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Instalar Dependencias
+        run: |
+          pip install -r requirements.txt
+
+      - name: Ejecutar Script
+        run: python scrap.py scrap2.py
+        env:
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}

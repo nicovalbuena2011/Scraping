@@ -1,1 +1,0 @@
-Número de Proceso	Tipo de Proceso	Estado	Entidad	Objeto	Departamento/Municipio	Cuantía	Fecha
