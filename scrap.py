@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 from dotenv import load_dotenv
 
-# Cargar variables de entorno desde el archivo .env
+# Cargar variables de entorno desde el archivo .env heyyy
 load_dotenv()
 
 #codigo para hacer scraping a la pagina de secop 1
