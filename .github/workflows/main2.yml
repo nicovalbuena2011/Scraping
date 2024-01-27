@@ -31,9 +31,4 @@ jobs:
       run: |
         python scrap.py
         
-    - name: Ejecutar Script 2
-      env:
-        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }} 
-      run: |
-        python scrap2.py
+
