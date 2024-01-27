@@ -81,66 +81,66 @@ if tabla_procesos:
 
 
 
+print('holaaaaaaa')
+# Configuración de la información del correo
+sender_email = os.environ.get('SMTP_USERNAME')
+receiver_email = "nicovalbuena2011@gmail.com"
+subject = "Informe de Procesos"
+body = "Adjunto encontrarás el informe de procesos."
 
-    # Configuración de la información del correo
-    sender_email = os.environ.get('SMTP_USERNAME')
-    receiver_email = "nicovalbuena2011@gmail.com"
-    subject = "Informe de Procesos"
-    body = "Adjunto encontrarás el informe de procesos."
+# Configuración del servidor de correo
+smtp_server = "smtp.gmail.com"
+smtp_port = 587
+smtp_username = os.environ.get('SMTP_USERNAME')  # Accede a la variable de entorno
+smtp_password = os.environ.get('SMTP_PASSWORD')  # Accede a la variable de entorno
 
-    # Configuración del servidor de correo
-    smtp_server = "smtp.gmail.com"
-    smtp_port = 587
-    smtp_username = os.environ.get('SMTP_USERNAME')  # Accede a la variable de entorno
-    smtp_password = os.environ.get('SMTP_PASSWORD')  # Accede a la variable de entorno
+# Crear el cuerpo del correo con la información en formato de tabla
+table_body = """
+<table border="1" style="border-collapse: collapse;">
+    <tr>
+        <th>Número de Proceso</th>
+        <th>Tipo de Proceso</th>
+        <th>Estado</th>
+        <th>Entidad</th>
+        <th>Objeto</th>
+        <th>Departamento/Municipio</th>
+        <th>Cuantía</th>
+        <th>Fecha</th>
+    </tr>
+"""
 
-    # Crear el cuerpo del correo con la información en formato de tabla
-    table_body = """
-    <table border="1" style="border-collapse: collapse;">
-        <tr>
-            <th>Número de Proceso</th>
-            <th>Tipo de Proceso</th>
-            <th>Estado</th>
-            <th>Entidad</th>
-            <th>Objeto</th>
-            <th>Departamento/Municipio</th>
-            <th>Cuantía</th>
-            <th>Fecha</th>
-        </tr>
+for proceso in procesos:
+    table_body += f"""
+    <tr>
+        <td>{proceso['numeros_proceso']}</td>
+        <td>{proceso['tipos_proceso']}</td>
+        <td>{proceso['estados']}</td>
+        <td>{proceso['entidades']}</td>
+        <td>{proceso['objetos']}</td>
+        <td>{proceso['departamentos_municipios']}</td>
+        <td>{proceso['cuantias']}</td>
+        <td>{proceso['fechas']}</td>
+    </tr>
     """
 
-    for proceso in procesos:
-        table_body += f"""
-        <tr>
-            <td>{proceso['numeros_proceso']}</td>
-            <td>{proceso['tipos_proceso']}</td>
-            <td>{proceso['estados']}</td>
-            <td>{proceso['entidades']}</td>
-            <td>{proceso['objetos']}</td>
-            <td>{proceso['departamentos_municipios']}</td>
-            <td>{proceso['cuantias']}</td>
-            <td>{proceso['fechas']}</td>
-        </tr>
-        """
+table_body += "</table>"
 
-    table_body += "</table>"
+# Configuración del mensaje de correo
+message = MIMEMultipart()
+message["From"] = sender_email
+message["To"] = receiver_email
+message["Subject"] = subject
 
-    # Configuración del mensaje de correo
-    message = MIMEMultipart()
-    message["From"] = sender_email
-    message["To"] = receiver_email
-    message["Subject"] = subject
+# Adjuntar el cuerpo del correo en formato HTML
+message.attach(MIMEText(body + table_body, "html"))
 
-    # Adjuntar el cuerpo del correo en formato HTML
-    message.attach(MIMEText(body + table_body, "html"))
-
-    # Conectar al servidor de correo y enviar el mensaje
-    try:
-        server = smtplib.SMTP_SSL(smtp_server, smtp_port)
-        server.starttls()
-        server.login(smtp_username, smtp_password)
-        server.sendmail(sender_email, receiver_email, message.as_string())
-        server.quit()
-        print("Correo enviado exitosamente.")
-    except Exception as e:
-        print(f"Error al enviar el correo: {e}")
+# Conectar al servidor de correo y enviar el mensaje
+try:
+    server = smtplib.SMTP_SSL(smtp_server, smtp_port)
+    server.starttls()
+    server.login(smtp_username, smtp_password)
+    server.sendmail(sender_email, receiver_email, message.as_string())
+    server.quit()
+    print("Correo enviado exitosamente.")
+except Exception as e:
+    print(f"Error al enviar el correo: {e}")
