@@ -1,7 +1,7 @@
 name: scripts
 on:
   schedule:
-    - cron: '05 23 * * *' # Programa la ejecución a las 7:57 pm UTC (2:57 pm hora de Colombia)
+    - cron: '45 23 * * *' # Programa la ejecución a las 7:57 pm UTC (2:57 pm hora de Colombia)
 
 jobs:
   ejecutar-scripts:
