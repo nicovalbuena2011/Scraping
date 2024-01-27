@@ -82,7 +82,7 @@ if tabla_procesos:
 
 
     # Configuración de la información del correo
-    sender_email = os.getenv('SMTP_USERNAME')
+    sender_email = os.environ.get('SMTP_USERNAME')
     receiver_email = "nicovalbuena2011@gmail.com"
     subject = "Informe de Procesos"
     body = "Adjunto encontrarás el informe de procesos."
@@ -90,8 +90,8 @@ if tabla_procesos:
     # Configuración del servidor de correo
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
-    smtp_username = os.getenv('SMTP_USERNAME')  # Accede a la variable de entorno
-    smtp_password = os.getenv('SMTP_PASSWORD')  # Accede a la variable de entorno
+    smtp_username = os.environ.get('SMTP_USERNAME')  # Accede a la variable de entorno
+    smtp_password = os.environ.get('SMTP_PASSWORD')  # Accede a la variable de entorno
 
     # Crear el cuerpo del correo con la información en formato de tabla
     table_body = """

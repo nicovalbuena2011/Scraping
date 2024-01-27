@@ -7,9 +7,7 @@ jobs:
   ejecutar-scripts:
     runs-on: ubuntu-latest
 
-    env:
-      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+    
 
     steps:
     - name: Checkout del código
@@ -26,9 +24,16 @@ jobs:
         pip install -r requirements.txt
 
     - name: Ejecutar Script 1
+      env:
+        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }} 
+        
       run: |
         python scrap.py
-
+        
     - name: Ejecutar Script 2
+      env:
+        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }} 
       run: |
         python scrap2.py
