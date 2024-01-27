@@ -135,7 +135,7 @@ if tabla_procesos:
 
     # Conectar al servidor de correo y enviar el mensaje
     try:
-        server = smtplib.SMTP_SSL(smtp_server, smtp_port)
+        server = smtplib.SMTP(smtp_server, smtp_port)
         server.starttls()
         server.login(smtp_username, smtp_password)
         server.sendmail(sender_email, receiver_email, message.as_string())
