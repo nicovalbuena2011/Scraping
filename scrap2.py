@@ -10,7 +10,7 @@ url = 'https://www.contratos.gov.co/consultas/resultadosConsulta.do?&action=vali
 #Parametros necesarios para hacer la busqueda
 
 params = {
-    'departamento': 73000,
+    'departamento': 15000,
     'objeto': 25000000,
     'fechaInicial': '01/01/2024'
 }
@@ -50,7 +50,7 @@ if tabla_procesos:
 
     # Guardar la información en un archivo de texto
 
-    with open('informacion_procesos.txt', 'w') as file:
+    with open('informacion_procesos_2.txt', 'w') as file:
         # Escribir encabezados
         file.write("Número de Proceso\tTipo de Proceso\tEstado\tEntidad\tObjeto\tDepartamento/Municipio\tCuantía\tFecha\n")
 
