@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 import os
 import random
 import smtplib
+import time
 import requests
 from bs4 import BeautifulSoup
 
@@ -50,6 +51,7 @@ headers = {
     'User-Agent': random.choice(user_agent_list),
 }
 
+time.sleep(3)
 response = requests.get(url, headers = headers)
 
 print(response)
