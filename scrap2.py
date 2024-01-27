@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
-#codigo para hacer scraping a la pagina de secop 1
+#codigo para hacer scraping a la pagina de secop 1 holaa
 
 url = 'https://www.contratos.gov.co/consultas/resultadosConsulta.do?&action=validate_captcha&ctl00$ContentPlaceHolder1$hidIDProducto=-1&ctl00$ContentPlaceHolder1$hidIDProductoNoIngresado=-1&ctl00$ContentPlaceHolder1$hidIDRubro=-1&ctl00$ContentPlaceHolder1$hidIdEmpresaC=0&ctl00$ContentPlaceHolder1$hidIdEmpresaVenta=-1&ctl00$ContentPlaceHolder1$hidIdOrgC=-1&ctl00$ContentPlaceHolder1$hidIdOrgV=-1&ctl00$ContentPlaceHolder1$hidNombreDemandante=-1&ctl00$ContentPlaceHolder1$hidNombreProducto=-1&ctl00$ContentPlaceHolder1$hidNombreProveedor=-1&ctl00$ContentPlaceHolder1$hidRangoMaximoFecha=&ctl00$ContentPlaceHolder1$hidRedir=&cuantia=0&departamento={valor1}&desdeFomulario=true&entidad=&estado=&fechaFinal=&fechaInicial={valor3}&findEntidad=&g-recaptcha-response=03AFcWeA6UqRYHARxiXlGlKUNO6hNeMFtadzC_8z1DacId8yWAZ6-GM23vp4HI5veWNqasb_VeDlNiIyUhOqpIcuE-5rW3Qx7BOJuFYhefDCMuJmLdO9i7Gp6iBrlIaJ0U9fiktRHS_zdSnNjRNtO3J9V-YW_dssALWOnYAo_LVpnK8XY9mZ01g9ty9U48G6098SxAWJuRRI2igxcIvvNM4OD2AeaenCCkj9cntUYlUy_HFoiGAOoP4hetWWYZdDR-ByArH6_IhGs9s4ex8nPmINBhd1cE4hM1F3rz_e41DHXS63GnwXK2VlSLDhWJrmuojlCZdQ2EGzetg_fxUDehDdXVZwJI8leh4BPf37_GFxPkDwIM7XKYAUWKpRz0dh8LpjcITTp7_5nX4jdsP7aJd14IM5_gssXgZ3840f9qksWdMwXkFxItKUAxF6rZd-SnwtiDotB1ozTPQaWbyvbW6ynN7pFv2N_QStV72BAv96B7TVmgirRWl17CQPux2mpYOvckQNulJgxvjOY8V1weIi53i7xn1tBySWb4x5WtqVl__TEqk-oCL1qPj2FhdbwwnrXAV-Plyqafnm29D18KYVtkqHevw5gcvw&municipio=0&numeroProceso=&objeto={valor2}&paginaObjetivo=1&registrosXPagina=50&tipoProceso='
 

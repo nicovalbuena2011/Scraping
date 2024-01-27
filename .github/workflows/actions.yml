@@ -2,15 +2,15 @@ name: Ejecutar Scripts Python
 
 on:
   schedule:
-    - cron: '59 19 * * *' # Programa la ejecución a las 7:57 pm UTC (2:57 pm hora de Colombia)
+    - cron: '03 20 * * *' # Programa la ejecución a las 7:57 pm UTC (2:57 pm hora de Colombia)
 
 jobs:
   ejecutar-scripts:
     runs-on: ubuntu-latest
 
     env:
-      SCRIPT1_SECRET: ${{ secrets.SCRIPT1_SECRET }}
-      SCRIPT2_SECRET: ${{ secrets.SCRIPT2_SECRET }}
+        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
 
     steps:
     - name: Checkout del código
@@ -28,14 +28,8 @@ jobs:
 
     - name: Ejecutar Script 1
       run: |
-        python script1.py
-      env:
-        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        python scrap.py
 
     - name: Ejecutar Script 2
       run: |
-        python script2.py
-      env:
-        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        python scrap2.py
