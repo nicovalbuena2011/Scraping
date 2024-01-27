@@ -1,0 +1,111 @@
+import random
+import time
+import requests
+from bs4 import BeautifulSoup
+
+def scraping():
+    departamentos = {
+        # 'Amazonas': 91000,
+        'Antioquia': 5000,
+        # # 'Arauca': 81000,
+        # 'Atlántico': 8000,
+        # # 'Bolívar': 1300,
+        # 'Boyacá': 15000,
+        # # 'Caldas': 17000,
+        # # 'Caquetá': 1800,
+        # # 'Casanare': 85000,
+        # # 'Cauca': 19000,
+        # 'Cesar': 20000,
+        # # 'Choco': 27000,
+        # 'Cordoba': 23000,
+        # 'Cundinamarca': 25000,
+        # # 'Guainía': 95000,
+        # 'Huila': 41000,
+        # # 'La Guajira': 44000,
+        # 'Magdalena': 47000,
+        # 'Meta': 50000,
+        # # 'Narinio': 52000,
+        # 'Norte De Santander': 54000,
+        # # 'Putumayo': 86000,
+        # 'Quindio': 63000,
+        # 'Risaralda': 66000,
+        # 'Santander': 668000,
+        # # 'Sucre': 70000,
+        # 'Tolima': 73000,
+        # 'Valle del Cauca': 76000,
+        # # 'Vaupes': 97000,
+        # # 'Vichada': 99000 
+    }
+
+    procesos = []
+
+    objeto = 25000000
+    fechaInicial = '01/01/2024'
+    
+    user_agent_list = [
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/101.0.0.0',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/95.0',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.0.0',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15',
+    ]
+
+    
+
+
+
+
+    for key, value in departamentos.items():
+        url = 'https://www.contratos.gov.co/consultas/resultadosConsulta.do?&action=validate_captcha&ctl00$ContentPlaceHolder1$hidIDProducto=-1&ctl00$ContentPlaceHolder1$hidIDProductoNoIngresado=-1&ctl00$ContentPlaceHolder1$hidIDRubro=-1&ctl00$ContentPlaceHolder1$hidIdEmpresaC=0&ctl00$ContentPlaceHolder1$hidIdEmpresaVenta=-1&ctl00$ContentPlaceHolder1$hidIdOrgC=-1&ctl00$ContentPlaceHolder1$hidIdOrgV=-1&ctl00$ContentPlaceHolder1$hidNombreDemandante=-1&ctl00$ContentPlaceHolder1$hidNombreProducto=-1&ctl00$ContentPlaceHolder1$hidNombreProveedor=-1&ctl00$ContentPlaceHolder1$hidRangoMaximoFecha=&ctl00$ContentPlaceHolder1$hidRedir=&cuantia=0&departamento={}&desdeFomulario=true&entidad=&estado=&fechaFinal=&fechaInicial={}&findEntidad=&g-recaptcha-response=03AFcWeA6UqRYHARxiXlGlKUNO6hNeMFtadzC_8z1DacId8yWAZ6-GM23vp4HI5veWNqasb_VeDlNiIyUhOqpIcuE-5rW3Qx7BOJuFYhefDCMuJmLdO9i7Gp6iBrlIaJ0U9fiktRHS_zdSnNjRNtO3J9V-YW_dssALWOnYAo_LVpnK8XY9mZ01g9ty9U48G6098SxAWJuRRI2igxcIvvNM4OD2AeaenCCkj9cntUYlUy_HFoiGAOoP4hetWWYZdDR-ByArH6_IhGs9s4ex8nPmINBhd1cE4hM1F3rz_e41DHXS63GnwXK2VlSLDhWJrmuojlCZdQ2EGzetg_fxUDehDdXVZwJI8leh4BPf37_GFxPkDwIM7XKYAUWKpRz0dh8LpjcITTp7_5nX4jdsP7aJd14IM5_gssXgZ3840f9qksWdMwXkFxItKUAxF6rZd-SnwtiDotB1ozTPQaWbyvbW6ynN7pFv2N_QStV72BAv96B7TVmgirRWl17CQPux2mpYOvckQNulJgxvjOY8V1weIi53i7xn1tBySWb4x5WtqVl__TEqk-oCL1qPj2FhdbwwnrXAV-Plyqafnm29D18KYVtkqHevw5gcvw&municipio=0&numeroProceso=&objeto={}&paginaObjetivo=1&registrosXPagina=50&tipoProceso='
+
+        headers = {
+            'User-Agent': random.choice(user_agent_list),
+        }
+
+        url = url.format(value, objeto, fechaInicial)
+
+        try:
+            # Imprime la URL para depuración
+            print("URL:", url)
+     
+
+            response = requests.get(url, headers = headers)
+            # time.sleep(10)
+
+            # Realiza la solicitud
+            # response = requests.get(url)
+            response.raise_for_status()  # Lanza una excepción en caso de error HTTP
+
+            # Crea un objeto BeautifulSoup para analizar el HTML
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            # Busca la tabla que contiene la información de los procesos
+            tabla_procesos = soup.find('table', {'border': '0', 'cellpadding': '0', 'cellspacing': '0'})
+
+            if tabla_procesos:
+                for fila in tabla_procesos.find_all('tr')[1:]:
+                    datos_celda = fila.find_all('td')
+
+                    procesos_encontrados = {
+                        'numeros_proceso': (datos_celda[1].text.strip()),
+                        'tipos_proceso': (datos_celda[2].text.strip()),
+                        'estados': (datos_celda[3].text.strip()),
+                        'entidades': (datos_celda[4].text.strip()),
+                        'objetos': (datos_celda[5].text.strip()),
+                        'departamentos_municipios': (datos_celda[6].text.strip()),
+                        'cuantias': (datos_celda[7].text.strip()),
+                        'fechas': (datos_celda[8].text.strip())
+                    }
+                    procesos.append(procesos_encontrados)
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error al procesar el departamento {key}: {e}")
+
+    return procesos
+
+print(scraping())
