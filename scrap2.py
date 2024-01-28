@@ -17,20 +17,51 @@ from bs4 import BeautifulSoup
 url = 'https://www.contratos.gov.co/consultas/resultadosConsulta.do?&action=validate_captcha&ctl00$ContentPlaceHolder1$hidIDProducto=-1&ctl00$ContentPlaceHolder1$hidIDProductoNoIngresado=-1&ctl00$ContentPlaceHolder1$hidIDRubro=-1&ctl00$ContentPlaceHolder1$hidIdEmpresaC=0&ctl00$ContentPlaceHolder1$hidIdEmpresaVenta=-1&ctl00$ContentPlaceHolder1$hidIdOrgC=-1&ctl00$ContentPlaceHolder1$hidIdOrgV=-1&ctl00$ContentPlaceHolder1$hidNombreDemandante=-1&ctl00$ContentPlaceHolder1$hidNombreProducto=-1&ctl00$ContentPlaceHolder1$hidNombreProveedor=-1&ctl00$ContentPlaceHolder1$hidRangoMaximoFecha=&ctl00$ContentPlaceHolder1$hidRedir=&cuantia=0&departamento={valor1}&desdeFomulario=true&entidad=&estado=&fechaFinal=&fechaInicial={valor3}&findEntidad=&g-recaptcha-response=03AFcWeA6UqRYHARxiXlGlKUNO6hNeMFtadzC_8z1DacId8yWAZ6-GM23vp4HI5veWNqasb_VeDlNiIyUhOqpIcuE-5rW3Qx7BOJuFYhefDCMuJmLdO9i7Gp6iBrlIaJ0U9fiktRHS_zdSnNjRNtO3J9V-YW_dssALWOnYAo_LVpnK8XY9mZ01g9ty9U48G6098SxAWJuRRI2igxcIvvNM4OD2AeaenCCkj9cntUYlUy_HFoiGAOoP4hetWWYZdDR-ByArH6_IhGs9s4ex8nPmINBhd1cE4hM1F3rz_e41DHXS63GnwXK2VlSLDhWJrmuojlCZdQ2EGzetg_fxUDehDdXVZwJI8leh4BPf37_GFxPkDwIM7XKYAUWKpRz0dh8LpjcITTp7_5nX4jdsP7aJd14IM5_gssXgZ3840f9qksWdMwXkFxItKUAxF6rZd-SnwtiDotB1ozTPQaWbyvbW6ynN7pFv2N_QStV72BAv96B7TVmgirRWl17CQPux2mpYOvckQNulJgxvjOY8V1weIi53i7xn1tBySWb4x5WtqVl__TEqk-oCL1qPj2FhdbwwnrXAV-Plyqafnm29D18KYVtkqHevw5gcvw&municipio=0&numeroProceso=&objeto={valor2}&paginaObjetivo=1&registrosXPagina=50&tipoProceso='
 
 
-
+departamentos = {
+    'Amazonas': 91000,
+    'Antioquia': 5000,
+    'Arauca': 81000,
+    'Atlántico': 8000,
+    'Bolívar': 1300,
+    'Boyacá': 15000,
+    'Caldas': 17000,
+    'Caquetá': 1800,
+    'Casanare': 85000,
+    'Cauca': 19000,
+    'Cesar': 20000,
+    'Choco': 27000,
+    'Cordoba': 23000,
+    'Cundinamarca': 25000,
+    'Guainía': 95000,
+    'Huila': 41000,
+    'La Guajira': 44000,
+    'Magdalena': 47000,
+    'Meta': 50000,
+    'Narinio': 52000,
+    'Norte De Santander': 54000,
+    'Putumayo': 86000,
+    'Quindio': 63000,
+    'Risaralda': 66000,
+    'Santander': 668000,
+    'Sucre': 70000,
+    'Tolima': 73000,
+    'Valle del Cauca': 76000,
+    'Vaupes': 97000,
+    'Vichada': 99000 
+}
 
 #Parametros necesarios para hacer la busqueda
 
 params = {
     'departamento': 15000,
     'objeto': 25000000,
-    'fechaInicial': '01/01/2024'
+    'fechaInicial': '25/01/2024'
 }
 
 #procesos
 procesos = []
 
-url = url.format(valor1 = params['departamento'], valor2 = params['objeto'], valor3 = params['fechaInicial'])
+url = url.format(valor1 = departamentos['Vichada'], valor2 = params['objeto'], valor3 = params['fechaInicial'])
 # Realiza la solicitud
 
 # user_agent_list = [
@@ -82,68 +113,68 @@ if tabla_procesos:
         procesos.append(procesos_encontrados)
 
 
+print(procesos)
 
 
+# # Configuración de la información del correo
+# sender_email = os.environ.get('SMTP_USERNAME')
+# receiver_email = "nicovalbuena2011@gmail.com"
+# subject = "Informe de Procesos"
+# body = "Adjunto encontrarás el informe de procesos."
 
-# Configuración de la información del correo
-sender_email = os.environ.get('SMTP_USERNAME')
-receiver_email = "nicovalbuena2011@gmail.com"
-subject = "Informe de Procesos"
-body = "Adjunto encontrarás el informe de procesos."
+# # Configuración del servidor de correo
+# smtp_server = "smtp.gmail.com"
+# smtp_port = 587
+# smtp_username = os.environ.get('SMTP_USERNAME')  # Accede a la variable de entorno
+# smtp_password = os.environ.get('SMTP_PASSWORD')  # Accede a la variable de entorno
 
-# Configuración del servidor de correo
-smtp_server = "smtp.gmail.com"
-smtp_port = 587
-smtp_username = os.environ.get('SMTP_USERNAME')  # Accede a la variable de entorno
-smtp_password = os.environ.get('SMTP_PASSWORD')  # Accede a la variable de entorno
+# # Crear el cuerpo del correo con la información en formato de tabla
+# table_body = """
+# <table border="1" style="border-collapse: collapse;">
+#     <tr>
+#         <th>Número de Proceso</th>
+#         <th>Tipo de Proceso</th>
+#         <th>Estado</th>
+#         <th>Entidad</th>
+#         <th>Objeto</th>
+#         <th>Departamento/Municipio</th>
+#         <th>Cuantía</th>
+#         <th>Fecha</th>
+#     </tr>
+# """
 
-# Crear el cuerpo del correo con la información en formato de tabla
-table_body = """
-<table border="1" style="border-collapse: collapse;">
-    <tr>
-        <th>Número de Proceso</th>
-        <th>Tipo de Proceso</th>
-        <th>Estado</th>
-        <th>Entidad</th>
-        <th>Objeto</th>
-        <th>Departamento/Municipio</th>
-        <th>Cuantía</th>
-        <th>Fecha</th>
-    </tr>
-"""
+# for proceso in procesos:
+#     table_body += f"""
+#     <tr>
+#         <td>{proceso['numeros_proceso']}</td>
+#         <td>{proceso['tipos_proceso']}</td>
+#         <td>{proceso['estados']}</td>
+#         <td>{proceso['entidades']}</td>
+#         <td>{proceso['objetos']}</td>
+#         <td>{proceso['departamentos_municipios']}</td>
+#         <td>{proceso['cuantias']}</td>
+#         <td>{proceso['fechas']}</td>
+#     </tr>
+#     """
 
-for proceso in procesos:
-    table_body += f"""
-    <tr>
-        <td>{proceso['numeros_proceso']}</td>
-        <td>{proceso['tipos_proceso']}</td>
-        <td>{proceso['estados']}</td>
-        <td>{proceso['entidades']}</td>
-        <td>{proceso['objetos']}</td>
-        <td>{proceso['departamentos_municipios']}</td>
-        <td>{proceso['cuantias']}</td>
-        <td>{proceso['fechas']}</td>
-    </tr>
-    """
+# table_body += "</table>"
 
-table_body += "</table>"
+# # Configuración del mensaje de correo
+# message = MIMEMultipart()
+# message["From"] = sender_email
+# message["To"] = receiver_email
+# message["Subject"] = subject
 
-# Configuración del mensaje de correo
-message = MIMEMultipart()
-message["From"] = sender_email
-message["To"] = receiver_email
-message["Subject"] = subject
+# # Adjuntar el cuerpo del correo en formato HTML
+# message.attach(MIMEText(body + table_body, "html"))
 
-# Adjuntar el cuerpo del correo en formato HTML
-message.attach(MIMEText(body + table_body, "html"))
-
-# Conectar al servidor de correo y enviar el mensaje
-try:
-    server = smtplib.SMTP(smtp_server, smtp_port)
-    server.starttls()
-    server.login(smtp_username, smtp_password)
-    server.sendmail(sender_email, receiver_email, message.as_string())
-    server.quit()
-    print("Correo enviado exitosamente.")
-except Exception as e:
-    print(f"Error al enviar el correo: {e}")
+# # Conectar al servidor de correo y enviar el mensaje
+# try:
+#     server = smtplib.SMTP(smtp_server, smtp_port)
+#     server.starttls()
+#     server.login(smtp_username, smtp_password)
+#     server.sendmail(sender_email, receiver_email, message.as_string())
+#     server.quit()
+#     print("Correo enviado exitosamente.")
+# except Exception as e:
+#     print(f"Error al enviar el correo: {e}")
